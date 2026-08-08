@@ -1,0 +1,54 @@
+{
+  "framework": "Multi-Cloud Governance & SRE Baseline",
+  "version": "1.0",
+  "controls": [
+    {
+      "id": "MCG-SEC-001",
+      "title": "Storage encryption at rest",
+      "severity": "critical",
+      "expected": { "operator": "eq", "value": true },
+      "provider_mappings": {
+        "aws": "AWS Config: s3-bucket-server-side-encryption-enabled",
+        "azure": "Azure Policy: Storage accounts should use infrastructure encryption",
+        "gcp": "Security Health Analytics: BUCKET_CMEK_DISABLED"
+      },
+      "remediation": "Enable provider-managed or customer-managed encryption for the storage resource."
+    },
+    {
+      "id": "MCG-REL-001",
+      "title": "Production service availability SLO",
+      "severity": "high",
+      "expected": { "operator": "gte", "value": 99.9 },
+      "provider_mappings": {
+        "aws": "CloudWatch SLO availability objective",
+        "azure": "Azure Monitor SLO availability objective",
+        "gcp": "Cloud Monitoring SLO availability objective"
+      },
+      "remediation": "Review error-budget burn, dependencies, and redundancy before accepting new reliability risk."
+    },
+    {
+      "id": "MCG-OBS-001",
+      "title": "Audit logging enabled",
+      "severity": "high",
+      "expected": { "operator": "eq", "value": true },
+      "provider_mappings": {
+        "aws": "AWS Config: cloudtrail-enabled",
+        "azure": "Azure Policy: diagnostic settings deployIfNotExists",
+        "gcp": "Cloud Audit Logs configuration"
+      },
+      "remediation": "Enable centralized audit logging and route logs to the approved retention destination."
+    },
+    {
+      "id": "MCG-FIN-001",
+      "title": "Required cost-center tag",
+      "severity": "medium",
+      "expected": { "operator": "contains", "value": "cost-center" },
+      "provider_mappings": {
+        "aws": "AWS Organizations tag policy",
+        "azure": "Azure Policy: require a tag on resources",
+        "gcp": "Organization Policy custom constraint for resource tags"
+      },
+      "remediation": "Add the approved cost-center tag and owner value to the resource."
+    }
+  ]
+}

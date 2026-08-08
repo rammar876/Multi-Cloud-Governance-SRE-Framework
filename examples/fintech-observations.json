@@ -1,0 +1,9 @@
+{
+  "observations": [
+    { "provider": "aws", "resource_id": "arn:aws:s3:::payments-ledger", "control_id": "MCG-SEC-001", "actual": true },
+    { "provider": "azure", "resource_id": "/subscriptions/demo/resourceGroups/payments/providers/Microsoft.Storage/storageAccounts/ledger", "control_id": "MCG-SEC-001", "actual": false },
+    { "provider": "gcp", "resource_id": "projects/demo/services/settlement-api", "control_id": "MCG-REL-001", "actual": 99.95 },
+    { "provider": "aws", "resource_id": "arn:aws:cloudtrail:us-east-1:123456789012:trail/audit", "control_id": "MCG-OBS-001", "actual": true },
+    { "provider": "gcp", "resource_id": "//compute.googleapis.com/projects/demo/zones/us-central1-a/instances/recon", "control_id": "MCG-FIN-001", "actual": ["environment", "owner"] }
+  ]
+}
